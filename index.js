@@ -21,7 +21,7 @@ app.get('/cart/add', (req, res) => {
   let price = parseFloat(req.query.price);
   let name = req.query.name;
   let cartItems = addToCart(cart, productId, quantity, price, name);
-  res.json(cartItems);
+  res.json({cartItems:cartItems});
 });
 // Endpoint 2
 function updateQuantity(cart, productId, quantity) {
@@ -36,7 +36,7 @@ app.get('/cart/edit', (req, res) => {
   let productId = parseInt(req.query.productId);
   let quantity = parseInt(req.query.quantity);
   let cartItems = updateQuantity(cart, productId, quantity);
-  res.json(cartItems);
+  res.json({cartItems:cartItems});
 });
 
 // Endpoint 3
@@ -46,12 +46,12 @@ function deleteCartByProductId(cart, productId) {
 app.get('/cart/delete', (req, res) => {
   let productId = parseInt(req.query.productId);
   let cartItems = cart.filter((cart) => deleteCartByProductId(cart, productId));
-  res.json(cartItems);
+  res.json({cartItems:cartItems});
 });
 
 // Endpoint 4
 app.get('/cart', (req, res) => {
-  res.json(cart);
+  res.json({cart:cart});
 });
 
 // Endpoint 5
